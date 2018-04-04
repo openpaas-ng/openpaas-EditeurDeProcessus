@@ -1,0 +1,14 @@
+#subheader
+  .bpmn-list-subheader.row
+    .col-xs-12.col-md-8.no-padding-xs
+      .row
+        .col-xs-6.col-sm-6.bpmn-list-subheader-title
+          a(href='#/bpmn')
+            h2.bpmn-list-subheader-title.small(ng-class="{'selected': selectedTab === 'editor'}")
+              span.glyphicon.glyphicon-edit.glyphicon-menu
+              | Editor
+        .col-xs-6.col-sm-6.bpmn-list-subheader-title
+          a(href='#/bpmn/task')
+            h2.bpmn-list-subheader-title.small(ng-class="{'selected': selectedTab === 'task'}")
+              span.glyphicon.glyphicon-list-alt.glyphicon-menu
+              | Task Manager

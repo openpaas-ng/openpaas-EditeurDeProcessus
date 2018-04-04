@@ -1,0 +1,18 @@
+sub-header
+    subheader-menu
+
+.my-task-manager#task
+    body(ng-app='esn.bpmn', ng-controller='bpmnController')
+        .task-manager-margin
+            .row
+                table.table
+                    thead
+                        tr
+                            th Id BPMN
+                            th Execute
+                    tbody
+                        tr(ng-repeat='item in listBpmnFile')
+                            td {{item.name}}
+                            td
+                                a(ng-click='executeProcess(item.name, item.bpmnFileId);', href='', title='Execute')
+                                    span.glyphicon.glyphicon-open

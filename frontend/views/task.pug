@@ -1,0 +1,34 @@
+.my-task-manager#task
+  .task-manager-margin
+    .row
+      div(ng-show='hasTask')
+        h2
+          i.glyphicon.glyphicon-list-alt
+          |  Task Manager
+        table.table.table-shadow(ng-show='!isShow')
+          thead.thead-default
+            tr
+              th Process Name
+              th Task Name
+              th Execute
+          tbody
+            tr(ng-repeat='data in bpmnFormDataList')
+              td {{data.processName}}
+              td {{selectTaskInformation(data.form)}}
+              td
+                a(ng-click='selectForm(data);', href='', title='Open')
+                  span.glyphicon.glyphicon-open
+        .well.form-container(ng-show='isShow')
+          legend Task Form
+          form(name='activitiName', novalidate='')
+            formly-form(model='activiti', fields='activitiFields')
+              br
+              button.btn.btn-primary.submit-button.pull-right.second-submit-button(type='submit', ng-click='onSubmit(activiti)') Submit
+              button.btn.btn-secondary.pull-right(type='submit', ng-click='cancel()') Cancel
+      div(ng-show='!hasTask')
+        h2 No task to do
+    ul.buttons.opacity-buttons
+      li
+        a(ng-click='goToEditor()', href='', title='activiti')
+          span.glyphicon.glyphicon-edit
+          | Editor

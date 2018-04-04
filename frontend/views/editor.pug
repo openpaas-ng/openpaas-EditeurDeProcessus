@@ -1,0 +1,35 @@
+
+#js-drop-zone.content
+  fab.first-step(ng-click='initDiagram()', icon="pen", ng-disabled="isDisabled")
+  .message.intro
+    .note
+      | Drop BPMN diagram from your desktop or
+      a#js-create-diagram(ng-click='initDiagram()')  create a new diagram
+      |  to get started.
+  #js-canvas.canvas
+  #js-properties-panel
+
+#editor
+  ul.buttons.opacity-buttons
+    li
+      input.js-upload-diagram(ng-model='photo', onchange='angular.element(this).scope().file_changed(this)', type='file', accept='text/xml')
+    li
+      a(ng-click='saveXML()', href='', title='Save')
+        span.glyphicon.glyphicon-floppy-save
+        | Save local
+    li
+      a(ng-click='saveXMLServer()', href='', title='Save')
+        span.glyphicon.glyphicon-save
+        | Save
+    li
+      a(ng-click='showModal()', href='', title='List')
+        span.glyphicon.glyphicon-th-list
+        | List
+    li
+      a(ng-click='activitiExecuteBpmn()', href='', title='activiti')
+        span.glyphicon.glyphicon-play
+        | Execute
+    li
+      a(ng-click='goToTask()', href='', title='activiti')
+        span.glyphicon.glyphicon-export
+        | Task List

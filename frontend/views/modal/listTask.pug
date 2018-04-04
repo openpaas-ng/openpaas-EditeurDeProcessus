@@ -1,0 +1,24 @@
+.modal(tabindex='-1', role='dialog', ng-controller='formTask')
+    .modal-dialog
+        .modal-content
+          .modal-header(ng-show='title')
+            h4.modal-title(ng-bind-html='title')
+          .modal-body
+            div(ng-show='hasTask')
+              table.table(ng-show='!isShow')
+                thead
+                  tr
+                    th Process Name / Id
+                    th Task Type
+                    th Task Id
+                    th Assignee
+                tbody
+                  tr(ng-repeat='data in bpmnDataList')
+                    td {{data.processName}} : {{data.processId}}
+                    td {{data.type}}
+                    td {{data.idTask}}
+                    td {{data.assignee}}
+            div(ng-show='!hasTask')
+              p No task to do
+          .modal-footer
+            button.btn.btn-default(type='button', ng-click='$hide()') Close
