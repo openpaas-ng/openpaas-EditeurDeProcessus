@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+	xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:camunda="http://camunda.org/schema/1.0/bpmn" targetNamespace="http://activiti.org/bpmn20"
+	id="Definitions_1">
+	<process id="ezadsqcxDSQAEC4586512347" name="Vacation request process"
+		isExecutable="true">
+		<startEvent id="request" camunda:initiator="employeeName">
+			<extensionElements>
+				<activiti:formProperty id="numberOfDays" type="long"
+					name="Number of days" value="1" />
+				<activiti:formProperty id="startDate" type="date"
+					name="First day of holiday (dd-MM-yyyy)" />
+				<activiti:formProperty id="vacationMotivation"
+					type="string" name="Motivation" />
+			</extensionElements>
+		</startEvent>
+		<sequenceFlow id="flow1" sourceRef="request" targetRef="handleRequest" />
+		<userTask id="handleRequest" name="Handle vacation request">
+			<bpmn:documentation>${employeeName} would like to take
+				${numberOfDays} day(s) of vacation (Motivation:
+				${vacationMotivation}).</bpmn:documentation>
+			<extensionElements>
+				<activiti:formProperty id="vacationApproved"
+					type="enum">
+					<camunda:value id="true" name="Approve" />
+					<camunda:value id="false" name="Reject" />
+				</activiti:formProperty>
+				<activiti:formProperty id="managerMotivation"
+					type="string" name="Motivation" />
+			</extensionElements>
+			<potentialOwner>
+				<resourceAssignmentExpression>
+					<formalExpression>management</formalExpression>
+				</resourceAssignmentExpression>
+			</potentialOwner>
+		</userTask>
+		<exclusiveGateway id="requestApprovedDecision" name="Request approved?" />
+		<sequenceFlow id="flow2" sourceRef="handleRequest"
+			targetRef="requestApprovedDecision" />
+		<task id="sendApprovalMail" name="Send confirmation e-mail" />
+		<sequenceFlow id="flow3" sourceRef="requestApprovedDecision"
+			targetRef="sendApprovalMail">
+			<bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${vacationApproved
+				== 'true'}</bpmn:conditionExpression>
+		</sequenceFlow>
+		<endEvent id="theEnd1" />
+		<sequenceFlow id="flow4" sourceRef="sendApprovalMail"
+			targetRef="theEnd1" />
+		<endEvent id="theEnd2" />
+		<sequenceFlow id="endFlow" sourceRef="requestApprovedDecision"
+			targetRef="theEnd2" />
+	</process>
+</definitions>

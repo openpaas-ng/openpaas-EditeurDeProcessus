@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:process id="form_string" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_0tnf94k">
+      <bpmn:outgoing>SequenceFlow_008zlkz</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_008zlkz" sourceRef="StartEvent_0tnf94k" targetRef="String_Form" />
+    <bpmn:userTask id="String_Form" name="String">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="string" label="string" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_008zlkz</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_000bt4x</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="EndEvent_0jq99un">
+      <bpmn:incoming>SequenceFlow_000bt4x</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_000bt4x" sourceRef="String_Form" targetRef="EndEvent_0jq99un" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">
+      <bpmndi:BPMNShape id="StartEvent_0tnf94k_di" bpmnElement="StartEvent_0tnf94k">
+        <dc:Bounds x="341" y="291" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="314" y="327" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_008zlkz_di" bpmnElement="SequenceFlow_008zlkz">
+        <di:waypoint xsi:type="dc:Point" x="377" y="309" />
+        <di:waypoint xsi:type="dc:Point" x="508" y="309" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="397.5" y="284" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_01mnn1i_di" bpmnElement="String_Form">
+        <dc:Bounds x="508" y="269" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_0jq99un_di" bpmnElement="EndEvent_0jq99un">
+        <dc:Bounds x="721" y="291" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="694" y="327" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_000bt4x_di" bpmnElement="SequenceFlow_000bt4x">
+        <di:waypoint xsi:type="dc:Point" x="608" y="309" />
+        <di:waypoint xsi:type="dc:Point" x="721" y="309" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="619.5" y="284" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

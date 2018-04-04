@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:process id="form_dkms" name="form_dkms" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_0vgeon3">
+      <bpmn:outgoing>SequenceFlow_1g7ni2p</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1g7ni2p" sourceRef="StartEvent_0vgeon3" targetRef="DMKS_Test" />
+    <bpmn:receiveTask id="DMKS_Test" name="DMKS_Test">
+      <bpmn:incoming>SequenceFlow_1g7ni2p</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_1ipt9rl</bpmn:outgoing>
+    </bpmn:receiveTask>
+    <bpmn:endEvent id="EndEvent_1ma2c3g">
+      <bpmn:incoming>SequenceFlow_1ipt9rl</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="SequenceFlow_1ipt9rl" sourceRef="DMKS_Test" targetRef="EndEvent_1ma2c3g" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="form_dkms">
+      <bpmndi:BPMNShape id="StartEvent_0vgeon3_di" bpmnElement="StartEvent_0vgeon3">
+        <dc:Bounds x="225" y="436" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="198" y="472" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1g7ni2p_di" bpmnElement="SequenceFlow_1g7ni2p">
+        <di:waypoint xsi:type="dc:Point" x="261" y="454" />
+        <di:waypoint xsi:type="dc:Point" x="323" y="454" />
+        <di:waypoint xsi:type="dc:Point" x="323" y="454" />
+        <di:waypoint xsi:type="dc:Point" x="379" y="454" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="263" y="429" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="ReceiveTask_10lywof_di" bpmnElement="DMKS_Test">
+        <dc:Bounds x="379" y="414" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_1ma2c3g_di" bpmnElement="EndEvent_1ma2c3g">
+        <dc:Bounds x="570" y="436" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="543" y="472" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1ipt9rl_di" bpmnElement="SequenceFlow_1ipt9rl">
+        <di:waypoint xsi:type="dc:Point" x="479" y="454" />
+        <di:waypoint xsi:type="dc:Point" x="570" y="454" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="479.5" y="429" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

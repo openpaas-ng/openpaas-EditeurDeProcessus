@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn">
+  <bpmn:process id="test_bpmn_valid" name="Vacation request process" isExecutable="true">
+    <bpmn:startEvent id="request" camunda:initiator="employeeName">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="numberOfDays" label="Number of days" type="long" defaultValue="1" />
+          <camunda:formField id="startDate" label="First day of holiday (dd-MM-yyyy)" type="date" />
+          <camunda:formField id="vacationMotivation" label="Motivation" type="string" defaultValue="" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:outgoing>flow1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="flow1" sourceRef="request" targetRef="handleRequest" />
+    <bpmn:userTask id="handleRequest" name="Handle vacation request">
+      <bpmn:documentation>${employeeName} would like to take ${numberOfDays} day(s) of vacation (Motivation: ${vacationMotivation}).</bpmn:documentation>
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="vacationApproved" label="Do you approve this vacation" type="enum">
+            <camunda:value id="true" name="Approve" />
+            <camunda:value id="false" name="Reject" />
+          </camunda:formField>
+          <camunda:formField id="userName" label="userName" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>flow1</bpmn:incoming>
+      <bpmn:outgoing>SequenceFlow_0t6zia7</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="theEnd1">
+      <bpmn:incoming>flow4</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="flow4" sourceRef="UserTask_1rnkw28" targetRef="theEnd1" />
+    <bpmn:sequenceFlow id="SequenceFlow_0t6zia7" sourceRef="handleRequest" targetRef="UserTask_1rnkw28" />
+    <bpmn:userTask id="UserTask_1rnkw28" name="Send confirmation e-mail">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="printUserName" label="The userName is ${userName}" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>SequenceFlow_0t6zia7</bpmn:incoming>
+      <bpmn:outgoing>flow4</bpmn:outgoing>
+    </bpmn:userTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="USER_PRINT_NAME_TEST">
+      <bpmndi:BPMNShape id="StartEvent_12dotd5_di" bpmnElement="request">
+        <dc:Bounds x="346" y="168" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="319" y="204" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_0n215fk_di" bpmnElement="flow1">
+        <di:waypoint xsi:type="dc:Point" x="382" y="186" />
+        <di:waypoint xsi:type="dc:Point" x="548" y="186" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="420" y="161" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_06auhiw_di" bpmnElement="handleRequest">
+        <dc:Bounds x="548" y="146" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="EndEvent_12tajv5_di" bpmnElement="theEnd1">
+        <dc:Bounds x="1166" y="168" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1139" y="204" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SequenceFlow_1lh11uq_di" bpmnElement="flow4">
+        <di:waypoint xsi:type="dc:Point" x="964" y="186" />
+        <di:waypoint xsi:type="dc:Point" x="1166" y="186" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1071.5" y="161" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SequenceFlow_0t6zia7_di" bpmnElement="SequenceFlow_0t6zia7">
+        <di:waypoint xsi:type="dc:Point" x="648" y="186" />
+        <di:waypoint xsi:type="dc:Point" x="864" y="186" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="762.5" y="161" width="90" height="20" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="UserTask_1rnkw28_di" bpmnElement="UserTask_1rnkw28">
+        <dc:Bounds x="864" y="146" width="100" height="80" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
